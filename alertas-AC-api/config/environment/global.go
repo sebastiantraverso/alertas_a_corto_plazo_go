@@ -1,4 +1,4 @@
-package config
+package environment
 
 import (
 	"errors"
@@ -13,7 +13,7 @@ import (
 
 func init() {
 	viper.SetConfigName("config")
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath("./config/environment")
 	err := viper.ReadInConfig()
 	if err != nil {
 		log.Printf("Error al leer el archivo de configuración %s", err)

@@ -8,16 +8,22 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/gorilla/mux"
-	config "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config"
+	endpoints "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config/endpoints"
+	config "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config/environment"
+	"github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/handler"
 )
 
 func main() {
 
 	l := log.New(os.Stdout, "alertas-AC-api", log.LstdFlags)
 
+	// handlers
+	sah := handler.NewShortAlert(l)
+
 	// create a new serve mux and register the handlers
-	sm := mux.NewRouter() // TODO: crear func con los endpoints y que devuelva un mux
+	// sm := mux.NewRouter() // TODO: crear func con los endpoints y que devuelva un mux
+
+	sm := endpoints.SetShortAlertsEndpoints(sah)
 
 	// variables del server
 	port, err := config.GetPort()
