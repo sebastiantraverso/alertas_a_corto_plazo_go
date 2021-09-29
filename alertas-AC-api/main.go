@@ -4,15 +4,14 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	endpoints "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config/controllers"
+	controllers "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config/controllers"
 	config "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config/environment"
 )
 
 func main() {
 
 	router := gin.Default()
-	endpoints.SetEndpoints(router)
-	// router.GET("/weather/sort-alert/all", handler.GetAllShortAlertsHandler)
+	controllers.SetEndpoints(router)
 
 	addSrv, err := config.GetServerAddress()
 	if err != nil {

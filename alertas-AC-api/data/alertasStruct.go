@@ -1,10 +1,5 @@
 package data
 
-type Response struct {
-	Ok   bool          `json:"ok"`
-	Data []AlertasData `json:"data"`
-}
-
 type AlertasData struct {
 	ID                 string            `json:"_id,omitempty"`
 	IDAlert            int64             `json:"idAlert,omitempty"`
@@ -22,7 +17,7 @@ type AlertasData struct {
 	RegionTopesNubosos string            `json:"region_topes_nubosos,omitempty"`
 	Partial            string            `json:"partial,omitempty"`
 	Update             interface{}       `json:"update,omitempty"`
-	NoValue            string            `json:"novalue,omitempty"`
+	// NoValue            string            `json:"novalue,omitempty"`
 }
 
 type URL struct {

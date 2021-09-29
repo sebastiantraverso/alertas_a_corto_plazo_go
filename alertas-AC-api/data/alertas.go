@@ -20,5 +20,5 @@ func (a *Alertas) GetAllAlertsData() ([]AlertasData, error) {
 	}
 
 	fmt.Println(responseObj)
-	return a.validateNoAlerts(&responseObj)
+	return responseObj, nil
 }

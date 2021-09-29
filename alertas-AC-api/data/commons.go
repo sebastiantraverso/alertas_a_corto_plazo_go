@@ -8,41 +8,28 @@ import (
 	"net/http"
 )
 
-func (a *Alertas) getAllAlertsDataCommon() (Response, error) {
+func (a *Alertas) getAllAlertsDataCommon() ([]AlertasData, error) {
 	funcName := "getAllAlertsDataCommon -"
 
 	response, err := http.Get("https://ws.smn.gob.ar/alerts/type/AC")
-	//response, err := http.NewRequest("GET", "https://ws.smn.gob.ar/alerts/type/AC", nil)
 	if err != nil {
-		return Response{}, fmt.Errorf("%s http.Get - %s", funcName, err)
+		return []AlertasData{}, fmt.Errorf("%s http.Get - %s", funcName, err)
 	}
-	fmt.Println(response.Body)
+	fmt.Println(response.Body) // TODO: borrar
 
 	responseData, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		return Response{}, fmt.Errorf("%s GetAllAlertsData - ioutil.ReadAll - %s", funcName, err)
+		return []AlertasData{}, fmt.Errorf("%s GetAllAlertsData - ioutil.ReadAll - %s", funcName, err)
 	}
+	fmt.Println(string(responseData)) // TODO: borrar
 
-	var responseObj Response
+	// var responseObj Response
+	var responseObj []AlertasData
 	json.Unmarshal(responseData, &responseObj)
 	if err != nil {
-		return Response{}, fmt.Errorf("%s GetAllAlertsData - unmarshal - %s", funcName, err)
+		return []AlertasData{}, fmt.Errorf("%s GetAllAlertsData - unmarshal - %s", funcName, err)
 	}
 
+	fmt.Println(responseObj)
 	return responseObj, nil
-}
-
-func (a *Alertas) validateNoAlerts(resp *Response) ([]AlertasData, error) {
-	funcName := "validateNoAlerts -"
-
-	if !resp.Ok {
-		s := []byte(`[ { "novalue": "No hay alertas" } ]`)
-		var newAlerData []AlertasData
-		err := json.Unmarshal(s, &newAlerData)
-		if err != nil {
-			return []AlertasData{}, fmt.Errorf("%s Unmarshal - %s", funcName, err)
-		}
-		return newAlerData, nil
-	}
-	return resp.Data, nil
 }

@@ -10,7 +10,7 @@ import (
 
 func GetAllShortAlertsHandler(c *gin.Context) {
 	alertasData := data.NewAlertas()
-	// fetch alerts fron datastore
+
 	response, err := alertasData.GetAllAlertsData()
 	if err != nil {
 		http.Error(c.Writer, fmt.Sprintf("Error: GetAllShortAlertsHandler - alertasData.GetAllAlertsData - %s", err), http.StatusInternalServerError)
