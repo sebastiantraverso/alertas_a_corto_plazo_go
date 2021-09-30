@@ -8,9 +8,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-// const port int = 5000
-// const server string = "localhost"
-
 func init() {
 	viper.SetConfigName("config")
 	viper.AddConfigPath("./config/environment")
