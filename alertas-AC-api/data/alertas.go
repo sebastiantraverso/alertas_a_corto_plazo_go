@@ -19,6 +19,5 @@ func (a *Alertas) GetAllAlertsData() ([]AlertasData, error) {
 		return []AlertasData{}, fmt.Errorf("%s - call getAllAlertsDataCommon - %s", funcName, err)
 	}
 
-	fmt.Println(responseObj)
 	return responseObj, nil
 }

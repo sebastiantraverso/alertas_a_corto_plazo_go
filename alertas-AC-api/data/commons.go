@@ -15,13 +15,11 @@ func (a *Alertas) getAllAlertsDataCommon() ([]AlertasData, error) {
 	if err != nil {
 		return []AlertasData{}, fmt.Errorf("%s http.Get - %s", funcName, err)
 	}
-	fmt.Println(response.Body) // TODO: borrar
 
 	responseData, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return []AlertasData{}, fmt.Errorf("%s GetAllAlertsData - ioutil.ReadAll - %s", funcName, err)
 	}
-	fmt.Println(string(responseData)) // TODO: borrar
 
 	// var responseObj Response
 	var responseObj []AlertasData
@@ -30,6 +28,5 @@ func (a *Alertas) getAllAlertsDataCommon() ([]AlertasData, error) {
 		return []AlertasData{}, fmt.Errorf("%s GetAllAlertsData - unmarshal - %s", funcName, err)
 	}
 
-	fmt.Println(responseObj)
 	return responseObj, nil
 }
