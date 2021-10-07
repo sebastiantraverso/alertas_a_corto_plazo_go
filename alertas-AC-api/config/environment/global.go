@@ -10,7 +10,7 @@ import (
 
 func init() {
 	viper.SetConfigName("config")
-	viper.AddConfigPath("./config/environment")
+	viper.AddConfigPath(".")
 	err := viper.ReadInConfig()
 	if err != nil {
 		log.Printf("Error al leer el archivo de configuración %s", err)

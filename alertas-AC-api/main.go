@@ -13,10 +13,15 @@ func main() {
 	router := gin.Default()
 	controllers.SetEndpoints(router)
 
-	addSrv, err := config.GetServerAddress()
+	// addSrv, err := config.GetServerAddress()
+	// if err != nil {
+	// 	fmt.Printf("Variables del server (addSrv): Error - %s", err)
+	// }
+	addPort, err := config.GetPort()
 	if err != nil {
-		fmt.Printf("Variables del server (addSrv): Error - %s", err)
+		fmt.Printf("Variables del server (addPort): Error - %s", err)
 	}
+	addSrv := fmt.Sprintf(":%d", addPort)
 
 	router.Run(addSrv)
 }
