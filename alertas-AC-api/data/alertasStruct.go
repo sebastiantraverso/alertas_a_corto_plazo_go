@@ -1,8 +1,8 @@
 package data
 
 type ResposneAlertasCortoPlazo struct {
-	version string        `json:"version"`
-	data    []AlertasData `json:"data"`
+	Version string        `json:"version,omitempty"`
+	Data    []AlertasData `json:"data,omitempty"`
 }
 
 type AlertasData struct {

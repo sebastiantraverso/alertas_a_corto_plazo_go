@@ -24,10 +24,14 @@ func (a *Alertas) GetAllAlertsData() (ResposneAlertasCortoPlazo, error) {
 		return ResposneAlertasCortoPlazo{}, fmt.Errorf("%s - call getBuildVersion - %s", funcName, err)
 	}
 
-	response := ResposneAlertasCortoPlazo{
-		data:    responseObj,
-		version: buildVersion,
-	}
+	// response := ResposneAlertasCortoPlazo{
+	// 	data:    responseObj,
+	// 	version: buildVersion,
+	// }
+
+	var response ResposneAlertasCortoPlazo
+	response.Data = responseObj
+	response.Version = buildVersion
 
 	// return responseObj, nil
 	return response, nil
