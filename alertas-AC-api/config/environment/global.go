@@ -48,3 +48,11 @@ func GetServerAddress() (string, error) {
 	addr := fmt.Sprintf("%s:%d", server, port)
 	return addr, nil
 }
+
+func GetBuildVersion() (string, error) {
+	value, ok := viper.Get("BUILD_VERSION").(string)
+	if !ok {
+		return "", errors.New("GetBuildVersion: Error al recuperar la variable BUILD_VERSION")
+	}
+	return value, nil
+}

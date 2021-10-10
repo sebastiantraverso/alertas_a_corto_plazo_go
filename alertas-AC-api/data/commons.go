@@ -6,6 +6,8 @@ import (
 
 	"io/ioutil"
 	"net/http"
+
+	config "github.com/sebastiantraverso/alertas_a_corto_plazo_go/alertas-AC-api/config/environment"
 )
 
 func (a *Alertas) getAllAlertsDataCommon() ([]AlertasData, error) {
@@ -21,7 +23,6 @@ func (a *Alertas) getAllAlertsDataCommon() ([]AlertasData, error) {
 		return []AlertasData{}, fmt.Errorf("%s GetAllAlertsData - ioutil.ReadAll - %s", funcName, err)
 	}
 
-	// var responseObj Response
 	var responseObj []AlertasData
 	json.Unmarshal(responseData, &responseObj)
 	if err != nil {
@@ -29,4 +30,15 @@ func (a *Alertas) getAllAlertsDataCommon() ([]AlertasData, error) {
 	}
 
 	return responseObj, nil
+}
+
+func (a *Alertas) getBuildVersion() (string, error) {
+	funcName := "getBuildVersion -"
+
+	buildVersion, err := config.GetBuildVersion()
+	if err != nil {
+		return "", fmt.Errorf("%s GetBuildVersion - %s", funcName, err)
+	}
+
+	return buildVersion, nil
 }
