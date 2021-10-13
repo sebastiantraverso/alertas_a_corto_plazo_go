@@ -16,5 +16,5 @@ func GetAllShortAlertsHandler(c *gin.Context) {
 		http.Error(c.Writer, fmt.Sprintf("Error: GetAllShortAlertsHandler - alertasData.GetAllAlertsData - %s", err), http.StatusInternalServerError)
 	}
 
-	c.IndentedJSON(http.StatusOK, response)
+	c.JSON(http.StatusOK, response)
 }
