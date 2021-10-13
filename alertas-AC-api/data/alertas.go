@@ -16,30 +16,17 @@ func (a *Alertas) GetAllAlertsData() (ResposneAlertasCortoPlazo, error) {
 
 	responseObj, err := a.getAllAlertsDataCommon()
 	if err != nil {
-		return ResposneAlertasCortoPlazo{}, fmt.Errorf("%s - call getAllAlertsDataCommon - %s", funcName, err)
+		return ResposneAlertasCortoPlazo{}, fmt.Errorf("%s call getAllAlertsDataCommon - %s", funcName, err)
 	}
 
 	buildVersion, err := a.getBuildVersion()
 	if err != nil {
-		return ResposneAlertasCortoPlazo{}, fmt.Errorf("%s - call getBuildVersion - %s", funcName, err)
+		return ResposneAlertasCortoPlazo{}, fmt.Errorf("%s call getBuildVersion - %s", funcName, err)
 	}
-
-	// response := ResposneAlertasCortoPlazo{
-	// 	data:    responseObj,
-	// 	version: buildVersion,
-	// }
 
 	var response ResposneAlertasCortoPlazo
 	response.Data = responseObj
 	response.Version = buildVersion
 
-	// return responseObj, nil
 	return response, nil
 }
-
-// func setUpResponseCortoPlazo(temp []data.AlertasData) data.ResposneAlertasCortoPlazo {
-// 	response := ResposneAlertasCortoPlazo{
-// 		data: ,
-// 		version: "222"
-// 	}
-// }
